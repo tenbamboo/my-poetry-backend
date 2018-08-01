@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop" 
+	xsi:schemaLocation="http://www.springframework.org/schema/beans  
+                        http://www.springframework.org/schema/beans/spring-beans-3.1.xsd  
+                        http://www.springframework.org/schema/context  
+                        http://www.springframework.org/schema/context/spring-context-3.1.xsd  
+                        http://www.springframework.org/schema/tx
+						http://www.springframework.org/schema/tx/spring-tx.xsd
+						http://www.springframework.org/schema/aop 
+						http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+                        http://www.springframework.org/schema/mvc  
+                        http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd">
+                        
+	
+	<!-- 用于事务管理的包扫描 -->
+	<context:component-scan base-package="com.tenbamboo">   
+	    <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller" />   
+	</context:component-scan>  
+	<!-- 引入配置文件 -->
+	<bean id="propertyConfigurer"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="location" value="classpath:jdbc.properties" />
+	</bean>
+
+		<!-- 数据源连接池 DBCP 方式 -->
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+		<!-- 数据库连接驱动 -->
+		<property name="driverClassName" value="${mysql.driver}" />
+		<!-- 数据库连接的URL -->
+		<property name="url" value="${mysql.url}" />
+		<!-- 数据库连接用户名 -->
+		<property name="username" value="${mysql.username}" />
+		<!--数据库连接密码 -->
+		<property name="password" value="${mysql.password}" />
+		<!-- 连接池中可同时连接的最大的连接数（默认值为8) -->
+		<property name="maxActive" value="50"></property>
+		<!-- 连接池中最大的空闲的连接数，超过的空闲连接将被释放，如果设置为负数表示不限制（默认为8个) -->
+		<property name="maxIdle" value="50"></property>
+		<!-- 连接池中最小的空闲的连接数，低于这个数量会被创建新的连接（默认为0) -->
+		<property name="minIdle" value="10"></property>
+		<!-- 连接池启动时创建的初始化连接数量（默认值为0） -->
+		<property name="initialSize" value="10" />
+		<!-- 最大等待时间，当没有可用连接时，连接池等待连接释放的最大时间，超过该时间限制会抛出异常，如果设置-1表示无限等待（默认为无限) -->
+		<property name="maxWait" value="30000" />
+		<!-- 超过removeAbandonedTimeout时间后，是否进行没用连接（废弃）的回收（默认为false) -->
+		<property name="removeAbandoned" value="true" />
+		<!-- 超过时间限制，回收没有用(废弃)的连接（默认为 300秒) -->
+		<property name="removeAbandonedTimeout" value="180" />
+		<!-- 是否要进行检测validateObject -->
+		<property name="testWhileIdle" value="true" />
+		<!-- 借出连接时不要测试validateObject，否则很影响性能 -->
+		<property name="testOnBorrow" value="false" />
+		<!-- 返还连接时不要测试validateObject，否则很影响性能 -->
+		<property name="testOnReturn" value="false" />
+		<!-- 进行检测一个连接是有效的SQL语句，比如oracle是select 1 from dual 而 mysql是 select 1 -->
+		<property name="validationQuery" value="select 1" />
+		<!-- 每30秒运行一次空闲连接回收器，每隔多少时间检测一次，比如每半小时检测一次，总不能总是检测，这会对性能产生影响 -->
+		<property name="timeBetweenEvictionRunsMillis" value="30000" />
+		<!-- 每次检测时，需要检测多少个数据连接，一般设置为与最大连接数一样，这样就可以检测完所有的连接 -->
+		<property name="numTestsPerEvictionRun" value="50" />
+		<!-- 池中的连接空闲30分钟后被回收，一个数据库连接连接多少时间之外，我们认为其应该不再适用了(可能下一次就会失效了)，应该移除并重新建立连接了 -->
+		<property name="minEvictableIdleTimeMillis" value="1800000" />
+	</bean>
+	
+	
+	
+	
+	<!-- 配置事务管理器 -->
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	<!-- 定义注解声明事务 -->
+	<tx:annotation-driven transaction-manager="transactionManager"/>
+	
+	
+	<!-- 事务处理 -->
+<!-- 	<tx:advice id="txAdvice" transaction-manager="transactionManager"> -->
+<!-- 		<tx:attributes> -->
+<!-- 			<tx:method name="get*" read-only="true" /> -->
+<!-- 			<tx:method name="insert*" rollback-for="Exception" /> -->
+<!-- 			<tx:method name="add*" rollback-for="Exception" /> -->
+<!-- 			<tx:method name="addOrUpdate*" rollback-for="Exception" /> -->
+<!-- 			<tx:method name="del*" rollback-for="Exception" /> -->
+<!-- 			<tx:method name="update*" rollback-for="Exception" /> -->
+<!-- 		</tx:attributes> -->
+<!-- 	</tx:advice> -->
+<!-- 	<aop:config proxy-target-class="true"> -->
+<!--         <aop:pointcut id="serviceMethod" expression="execution(* com.demo.service..*.*(..))" /> -->
+<!--         <aop:advisor advice-ref="txAdvice" pointcut-ref="serviceMethod" /> -->
+<!--     </aop:config> -->
+	
+	
+
+	<!-- spring和MyBatis完美整合，不需要mybatis的配置映射文件 -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<!-- 自动扫描mapping.xml文件 -->
+		<property name="mapperLocations" value="classpath:com/tenbamboo/sqlMaps/*/*.xml"></property>
+	</bean>
+
+	<!-- DAO接口所在包名，Spring会自动查找其下的类 -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com.tenbamboo.dao" />
+		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
+	</bean>
+	
+
+
+</beans>

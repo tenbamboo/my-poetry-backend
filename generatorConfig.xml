@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE generatorConfiguration  
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"  
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">  
+<generatorConfiguration>
+    <classPathEntry  location="mysql-connector-java-5.1.30.jar"/>  
+    <context id="Mysql" targetRuntime="MyBatis3">
+    	 <plugin type="org.mybatis.generator.plugins.MySQLPaginationPlugin"></plugin>
+        <commentGenerator>
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+        	connectionURL="jdbc:mysql://115.28.79.230:3306/phdb"
+        		userId="view-230" password="View@123">
+        </jdbcConnection>
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>  
+        </javaTypeResolver>
+        <!-- 生成模型的包名和位置-->  
+        <javaModelGenerator targetPackage="com.tenbamboo.bean"  targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+        <sqlMapGenerator targetPackage="com.tenbamboo.sqlMaps.mapper" targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.tenbamboo.dao" targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+        
+        <table tableName="bs_shop" domainObjectName="BsShop" ></table>
+<!--         <table tableName="tenbamboo_message" domainObjectName="tenbambooMessage" ></table> -->
+<!--         <table tableName="tenbamboo_feedback" domainObjectName="tenbambooFeedback" ></table> -->
+<!--         <table tableName="tenbamboo_update" domainObjectName="tenbambooUpdate" ></table> -->
+<!--         <table tableName="b_province" domainObjectName="Province" ></table> -->
+<!--         <table tableName="b_city" domainObjectName="City" ></table> -->
+<!--         <table tableName="b_county" domainObjectName="County" ></table> -->
+<!--         <table tableName="tenbamboo_cash_apply" domainObjectName="tenbambooCashApply" ></table> -->
+<!--         <table tableName="tenbamboo_cash" domainObjectName="tenbambooCash"></table> -->
+<!--         <table tableName="tenbamboo_vip" domainObjectName="tenbambooVip"></table> -->
+<!--         <table tableName="tenbamboo_bond" domainObjectName="tenbambooBond"></table> -->
+<!--         <table tableName="tenbamboo_business" domainObjectName="tenbambooBusiness"></table> -->
+<!--         <table tableName="tenbamboo_account" domainObjectName="tenbambooAccount"></table> -->
+<!--         <table tableName="tenbamboo_user_relation" domainObjectName="tenbambooUserRelation"></table> -->
+<!--         <table tableName="tenbamboo_visit" domainObjectName="tenbambooVisit"></table> -->
+<!--         <table tableName="tenbamboo_checkin" domainObjectName="tenbambooCheckIn"></table> -->
+<!--         <table tableName="tenbamboo_transaction" domainObjectName="tenbambooTransaction"></table> -->
+<!--         <table tableName="tenbamboo_goodstype" domainObjectName="tenbambooGoodstype"></table> -->
+<!--         <table tableName="tenbamboo_brand" domainObjectName="tenbambooBrand"></table> -->
+<!--         <table tableName="tenbamboo_goodssize" domainObjectName="tenbambooGoodssize"></table> -->
+<!--         <table tableName="tenbamboo_source" domainObjectName="tenbambooSource"></table> -->
+<!--          <table tableName="tenbamboo_goods" domainObjectName="tenbambooGoods"></table> -->
+<!--          <table tableName="tenbamboo_shopping_car" domainObjectName="tenbambooShoppingCar"></table> -->
+        
+        
+<!--         <table tableName="tenbamboo_cashout" domainObjectName="tenbambooCashout" ></table> -->
+<!--         <table tableName="tenbamboo_cashin" domainObjectName="tenbambooCashin" ></table> -->
+        
+        
+        
+    </context>  
+    
+</generatorConfiguration>
+<!--
+=============================
+	如果你希望不生成和Example查询有关的内容，使用[MyBatis3Simple]可以避免在后面的<table>中逐个进行配置
+		[defaultModelType]flat:该模型为每一张表只生成一个实体类。这个实体类包含表中的所有字段。
+		[suppressAllComments]**阻止**生成注释
+		[suppressDate]**阻止**生成的注释包含时间戳 
+	[jdbcConnection]数据库链接URL，用户名、密码
+		暂时配置为快速物流项目的Mysql数据库(jdbc:mysql://10.1.8.24:3306/fl)
+	[forceBigDecimals]是否强制DECIMAL和NUMERIC类型的字段转换为Java类型的java.math.BigDecimal,默认值为false，一般不需要配置。
+	[javaModelGenerator]生成模型的包名和位置
+		[enableSubPackages]会根据catalog和schema来生成子包。默认为false
+		[trimStrings]是否对数据库查询结果进行trim操作，如果设置为true就会生成类似以下setter方法。默认值为false
+		public void setUsername(String username) {this.username = username == null ? null : username.trim();}
+	[sqlMapGenerator]生成映射文件的包名和位置
+	[javaClientGenerator]生成DAO的包名和位置
+		[type]XMLMAPPER:所有的方法都在XML中，接口调用依赖XML文件。
+	【以上三项Generator都有参数targetPackage="com.lanxi.hm.code"】请根据实际项目结构来修改输出路径com.lanxi.hm.xxxxxx
+	[table]要生成哪些表，表名tableName="b_game"，
+		暂时配置为快速物流项目的游戏表(b_game)
+=============================
+详细参数说明，请看http://git.oschina.net/free/Mybatis_Utils/blob/master/MybatisGeneator/MybatisGeneator.md
+=============================
+通过CMD命令行方式来运行【比如解压缩的mytest文件夹，放在D盘根目录下】
+d:
+cd mytest
+java -jar mybatis-generator-core-1.3.2-page.jar -configfile generatorConfig.xml
+java -jar mybatis-generator-core-1.3.2-page.jar -configfile generatorConfig.xml -overwrite
+java -jar mybatis-generator-core-1.3.2.jar -configfile generatorConfig.xml -overwrite
+=============================
+-->
