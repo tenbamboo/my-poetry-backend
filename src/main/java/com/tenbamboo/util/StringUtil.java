@@ -1,4 +1,4 @@
-package com.pharmeyes.healthstar.hj.base.utilities.data.handle.string;
+package com.tenbamboo.util;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -151,27 +151,6 @@ public class StringUtil {
 	public static void main (String[] args){
 	}
 	
-	public static String replaceStr(String patternString, String text, ReplaceInterface replaceInterface) {
-		// 生成匹配模式的正则表达式
-		Pattern pattern = Pattern.compile(patternString);
-		Matcher matcher = pattern.matcher(text);
-
-		// 两个方法：appendReplacement, appendTail
-		StringBuffer sb = new StringBuffer();
-
-		while (matcher.find()) {
-			String str = "";
-			String[] strList = new String[matcher.groupCount()];
-			for(int i = 0; i < matcher.groupCount(); i++) {
-				strList[i] = matcher.group(i+1);
-			}
-			str = replaceInterface.replace(strList);
-			matcher.appendReplacement(sb, str);
-		}
-		matcher.appendTail(sb);
-		text = sb.toString();
-		return text;
-	}
 	
 	public static String upperCaseFirst(String str) {  
 	    char[] ch = str.toCharArray();  

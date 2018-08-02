@@ -137,8 +137,8 @@
 
 
 	<!-- swagger start ,线上版本需要注释掉 -->
-    <bean class="com.tenbamboo.swagger.SwaggerConfiguration" />
-    <mvc:resources mapping="/swagger/**" location="/swagger/" />
+<!--     <bean class="com.tenbamboo.swagger.SwaggerConfiguration" /> -->
+<!--     <mvc:resources mapping="/swagger/**" location="/swagger/" /> -->
     <!-- swagger end ,线上版本需要注释掉 -->
 
 
