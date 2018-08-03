@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tenbamboo.dao.PoetryErrorMapper" >
+  <resultMap id="BaseResultMap" type="com.tenbamboo.bean.PoetryError" >
+    <id column="error_id" property="errorId" jdbcType="VARCHAR" />
+    <result column="error_file_name" property="errorFileName" jdbcType="VARCHAR" />
+    <result column="error_title_name" property="errorTitleName" jdbcType="VARCHAR" />
+    <result column="error_msg" property="errorMsg" jdbcType="VARCHAR" />
+    <result column="is_solve" property="isSolve" jdbcType="VARCHAR" />
+    <result column="solve_way" property="solveWay" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    error_id, error_file_name, error_title_name, error_msg, is_solve, solve_way
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.tenbamboo.bean.PoetryErrorExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from poetry_error
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="offset != null and offset >= 0 and limit != null and limit>=0" >
+      limit ${offset} , ${limit}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from poetry_error
+    where error_id = #{errorId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from poetry_error
+    where error_id = #{errorId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.tenbamboo.bean.PoetryErrorExample" >
+    delete from poetry_error
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.tenbamboo.bean.PoetryError" >
+    insert into poetry_error (error_id, error_file_name, error_title_name, 
+      error_msg, is_solve, solve_way
+      )
+    values (#{errorId,jdbcType=VARCHAR}, #{errorFileName,jdbcType=VARCHAR}, #{errorTitleName,jdbcType=VARCHAR}, 
+      #{errorMsg,jdbcType=VARCHAR}, #{isSolve,jdbcType=VARCHAR}, #{solveWay,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.tenbamboo.bean.PoetryError" >
+    insert into poetry_error
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="errorId != null" >
+        error_id,
+      </if>
+      <if test="errorFileName != null" >
+        error_file_name,
+      </if>
+      <if test="errorTitleName != null" >
+        error_title_name,
+      </if>
+      <if test="errorMsg != null" >
+        error_msg,
+      </if>
+      <if test="isSolve != null" >
+        is_solve,
+      </if>
+      <if test="solveWay != null" >
+        solve_way,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="errorId != null" >
+        #{errorId,jdbcType=VARCHAR},
+      </if>
+      <if test="errorFileName != null" >
+        #{errorFileName,jdbcType=VARCHAR},
+      </if>
+      <if test="errorTitleName != null" >
+        #{errorTitleName,jdbcType=VARCHAR},
+      </if>
+      <if test="errorMsg != null" >
+        #{errorMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="isSolve != null" >
+        #{isSolve,jdbcType=VARCHAR},
+      </if>
+      <if test="solveWay != null" >
+        #{solveWay,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.tenbamboo.bean.PoetryErrorExample" resultType="java.lang.Integer" >
+    select count(*) from poetry_error
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update poetry_error
+    <set >
+      <if test="record.errorId != null" >
+        error_id = #{record.errorId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.errorFileName != null" >
+        error_file_name = #{record.errorFileName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.errorTitleName != null" >
+        error_title_name = #{record.errorTitleName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.errorMsg != null" >
+        error_msg = #{record.errorMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isSolve != null" >
+        is_solve = #{record.isSolve,jdbcType=VARCHAR},
+      </if>
+      <if test="record.solveWay != null" >
+        solve_way = #{record.solveWay,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update poetry_error
+    set error_id = #{record.errorId,jdbcType=VARCHAR},
+      error_file_name = #{record.errorFileName,jdbcType=VARCHAR},
+      error_title_name = #{record.errorTitleName,jdbcType=VARCHAR},
+      error_msg = #{record.errorMsg,jdbcType=VARCHAR},
+      is_solve = #{record.isSolve,jdbcType=VARCHAR},
+      solve_way = #{record.solveWay,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tenbamboo.bean.PoetryError" >
+    update poetry_error
+    <set >
+      <if test="errorFileName != null" >
+        error_file_name = #{errorFileName,jdbcType=VARCHAR},
+      </if>
+      <if test="errorTitleName != null" >
+        error_title_name = #{errorTitleName,jdbcType=VARCHAR},
+      </if>
+      <if test="errorMsg != null" >
+        error_msg = #{errorMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="isSolve != null" >
+        is_solve = #{isSolve,jdbcType=VARCHAR},
+      </if>
+      <if test="solveWay != null" >
+        solve_way = #{solveWay,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where error_id = #{errorId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tenbamboo.bean.PoetryError" >
+    update poetry_error
+    set error_file_name = #{errorFileName,jdbcType=VARCHAR},
+      error_title_name = #{errorTitleName,jdbcType=VARCHAR},
+      error_msg = #{errorMsg,jdbcType=VARCHAR},
+      is_solve = #{isSolve,jdbcType=VARCHAR},
+      solve_way = #{solveWay,jdbcType=VARCHAR}
+    where error_id = #{errorId,jdbcType=VARCHAR}
+  </update>
+</mapper>

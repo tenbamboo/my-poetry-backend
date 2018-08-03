@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tenbamboo.dao.PoetryContentMapper" >
+  <resultMap id="BaseResultMap" type="com.tenbamboo.bean.PoetryContent" >
+    <id column="content_id" property="contentId" jdbcType="VARCHAR" />
+    <result column="base_id" property="baseId" jdbcType="VARCHAR" />
+    <result column="content" property="content" jdbcType="VARCHAR" />
+    <result column="strains" property="strains" jdbcType="VARCHAR" />
+    <result column="create_date" property="createDate" jdbcType="VARCHAR" />
+    <result column="sort_index" property="sortIndex" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    content_id, base_id, content, strains, create_date, sort_index
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.tenbamboo.bean.PoetryContentExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from poetry_content
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="offset != null and offset >= 0 and limit != null and limit>=0" >
+      limit ${offset} , ${limit}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from poetry_content
+    where content_id = #{contentId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from poetry_content
+    where content_id = #{contentId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.tenbamboo.bean.PoetryContentExample" >
+    delete from poetry_content
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.tenbamboo.bean.PoetryContent" >
+    insert into poetry_content (content_id, base_id, content, 
+      strains, create_date, sort_index
+      )
+    values (#{contentId,jdbcType=VARCHAR}, #{baseId,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, 
+      #{strains,jdbcType=VARCHAR}, #{createDate,jdbcType=VARCHAR}, #{sortIndex,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.tenbamboo.bean.PoetryContent" >
+    insert into poetry_content
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="contentId != null" >
+        content_id,
+      </if>
+      <if test="baseId != null" >
+        base_id,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+      <if test="strains != null" >
+        strains,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="sortIndex != null" >
+        sort_index,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="contentId != null" >
+        #{contentId,jdbcType=VARCHAR},
+      </if>
+      <if test="baseId != null" >
+        #{baseId,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="strains != null" >
+        #{strains,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=VARCHAR},
+      </if>
+      <if test="sortIndex != null" >
+        #{sortIndex,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.tenbamboo.bean.PoetryContentExample" resultType="java.lang.Integer" >
+    select count(*) from poetry_content
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update poetry_content
+    <set >
+      <if test="record.contentId != null" >
+        content_id = #{record.contentId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.baseId != null" >
+        base_id = #{record.baseId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.content != null" >
+        content = #{record.content,jdbcType=VARCHAR},
+      </if>
+      <if test="record.strains != null" >
+        strains = #{record.strains,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createDate != null" >
+        create_date = #{record.createDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sortIndex != null" >
+        sort_index = #{record.sortIndex,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update poetry_content
+    set content_id = #{record.contentId,jdbcType=VARCHAR},
+      base_id = #{record.baseId,jdbcType=VARCHAR},
+      content = #{record.content,jdbcType=VARCHAR},
+      strains = #{record.strains,jdbcType=VARCHAR},
+      create_date = #{record.createDate,jdbcType=VARCHAR},
+      sort_index = #{record.sortIndex,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tenbamboo.bean.PoetryContent" >
+    update poetry_content
+    <set >
+      <if test="baseId != null" >
+        base_id = #{baseId,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="strains != null" >
+        strains = #{strains,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=VARCHAR},
+      </if>
+      <if test="sortIndex != null" >
+        sort_index = #{sortIndex,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where content_id = #{contentId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tenbamboo.bean.PoetryContent" >
+    update poetry_content
+    set base_id = #{baseId,jdbcType=VARCHAR},
+      content = #{content,jdbcType=VARCHAR},
+      strains = #{strains,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=VARCHAR},
+      sort_index = #{sortIndex,jdbcType=VARCHAR}
+    where content_id = #{contentId,jdbcType=VARCHAR}
+  </update>
+</mapper>

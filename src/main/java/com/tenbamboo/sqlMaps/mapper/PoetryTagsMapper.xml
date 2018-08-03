@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tenbamboo.dao.PoetryTagsMapper" >
+  <resultMap id="BaseResultMap" type="com.tenbamboo.bean.PoetryTags" >
+    <id column="tags_id" property="tagsId" jdbcType="VARCHAR" />
+    <result column="tags_name" property="tagsName" jdbcType="VARCHAR" />
+    <result column="tags_type" property="tagsType" jdbcType="VARCHAR" />
+    <result column="create_date" property="createDate" jdbcType="VARCHAR" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="base_id" property="baseId" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    tags_id, tags_name, tags_type, create_date, user_id, base_id
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.tenbamboo.bean.PoetryTagsExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from poetry_tags
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="offset != null and offset >= 0 and limit != null and limit>=0" >
+      limit ${offset} , ${limit}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from poetry_tags
+    where tags_id = #{tagsId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from poetry_tags
+    where tags_id = #{tagsId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.tenbamboo.bean.PoetryTagsExample" >
+    delete from poetry_tags
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.tenbamboo.bean.PoetryTags" >
+    insert into poetry_tags (tags_id, tags_name, tags_type, 
+      create_date, user_id, base_id
+      )
+    values (#{tagsId,jdbcType=VARCHAR}, #{tagsName,jdbcType=VARCHAR}, #{tagsType,jdbcType=VARCHAR}, 
+      #{createDate,jdbcType=VARCHAR}, #{userId,jdbcType=INTEGER}, #{baseId,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.tenbamboo.bean.PoetryTags" >
+    insert into poetry_tags
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="tagsId != null" >
+        tags_id,
+      </if>
+      <if test="tagsName != null" >
+        tags_name,
+      </if>
+      <if test="tagsType != null" >
+        tags_type,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="baseId != null" >
+        base_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="tagsId != null" >
+        #{tagsId,jdbcType=VARCHAR},
+      </if>
+      <if test="tagsName != null" >
+        #{tagsName,jdbcType=VARCHAR},
+      </if>
+      <if test="tagsType != null" >
+        #{tagsType,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="baseId != null" >
+        #{baseId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.tenbamboo.bean.PoetryTagsExample" resultType="java.lang.Integer" >
+    select count(*) from poetry_tags
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update poetry_tags
+    <set >
+      <if test="record.tagsId != null" >
+        tags_id = #{record.tagsId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tagsName != null" >
+        tags_name = #{record.tagsName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tagsType != null" >
+        tags_type = #{record.tagsType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createDate != null" >
+        create_date = #{record.createDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userId != null" >
+        user_id = #{record.userId,jdbcType=INTEGER},
+      </if>
+      <if test="record.baseId != null" >
+        base_id = #{record.baseId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update poetry_tags
+    set tags_id = #{record.tagsId,jdbcType=VARCHAR},
+      tags_name = #{record.tagsName,jdbcType=VARCHAR},
+      tags_type = #{record.tagsType,jdbcType=VARCHAR},
+      create_date = #{record.createDate,jdbcType=VARCHAR},
+      user_id = #{record.userId,jdbcType=INTEGER},
+      base_id = #{record.baseId,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tenbamboo.bean.PoetryTags" >
+    update poetry_tags
+    <set >
+      <if test="tagsName != null" >
+        tags_name = #{tagsName,jdbcType=VARCHAR},
+      </if>
+      <if test="tagsType != null" >
+        tags_type = #{tagsType,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="baseId != null" >
+        base_id = #{baseId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where tags_id = #{tagsId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tenbamboo.bean.PoetryTags" >
+    update poetry_tags
+    set tags_name = #{tagsName,jdbcType=VARCHAR},
+      tags_type = #{tagsType,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=INTEGER},
+      base_id = #{baseId,jdbcType=VARCHAR}
+    where tags_id = #{tagsId,jdbcType=VARCHAR}
+  </update>
+</mapper>

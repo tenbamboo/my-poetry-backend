@@ -17,6 +17,9 @@ public class Uid {
             // d 代表参数为正数型
             return "M"+ nowLong + String.format("%010d", hashCodeV);
         }
+        public static String getUUID() {
+        	return UUID.randomUUID().toString();
+        }
         public static void main(String[] args) {
             System.out.println(getOrderIdByUUId());
         }

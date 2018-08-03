@@ -10,8 +10,8 @@
             <property name="suppressAllComments" value="true"/>
         </commentGenerator>
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-        	connectionURL="jdbc:mysql://115.28.79.230:3306/phdb"
-        		userId="view-230" password="View@123">
+        	connectionURL="jdbc:mysql://127.0.0.1:3306/poetry"
+        		userId="root" password="root">
         </jdbcConnection>
         <javaTypeResolver>
             <property name="forceBigDecimals" value="false"/>  
@@ -28,7 +28,17 @@
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
         
-        <table tableName="bs_shop" domainObjectName="BsShop" ></table>
+        <table tableName="ec_user" domainObjectName="EcUser" ></table>
+        <table tableName="ec_user_behavior" domainObjectName="EcUserBehavior" ></table>
+        <table tableName="poetry_author" domainObjectName="PoetryAuthor" ></table>
+        <table tableName="poetry_base" domainObjectName="PoetryBase" ></table>
+         <table tableName="poetry_content" domainObjectName="PoetryContent" ></table>
+          <table tableName="poetry_tags" domainObjectName="PoetryTags" ></table>
+          <table tableName="poetry_error" domainObjectName="PoetryError" ></table>
+          <table tableName="poetry_done" domainObjectName="PoetryDone" ></table>
+          
+          
+        
 <!--         <table tableName="tenbamboo_message" domainObjectName="tenbambooMessage" ></table> -->
 <!--         <table tableName="tenbamboo_feedback" domainObjectName="tenbambooFeedback" ></table> -->
 <!--         <table tableName="tenbamboo_update" domainObjectName="tenbambooUpdate" ></table> -->
