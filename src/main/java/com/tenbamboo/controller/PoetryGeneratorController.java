@@ -150,7 +150,7 @@ public class PoetryGeneratorController {
 	@RequestMapping(value = "/generator")
 	public String post1(HttpServletRequest request) throws UnsupportedEncodingException, IOException {
 
-		File rootPath = new File("E:\\chinese-poetry-zhCN-master\\poetry\\");
+		File rootPath = new File("E:\\chinese-poetry-zhCN-master\\poetry2\\");
 		File[] list = rootPath.listFiles();
 		// JSONArray list = null;
 		PoetryDone done = null;
