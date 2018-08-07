@@ -10,7 +10,7 @@ public interface PoetryBaseMapper {
 
     int deleteByExample(PoetryBaseExample example);
 
-    int deleteByPrimaryKey(String baseId);
+    int deleteByPrimaryKey(Integer baseId);
 
     int insert(PoetryBase record);
 
@@ -18,7 +18,7 @@ public interface PoetryBaseMapper {
 
     List<PoetryBase> selectByExample(PoetryBaseExample example);
 
-    PoetryBase selectByPrimaryKey(String baseId);
+    PoetryBase selectByPrimaryKey(Integer baseId);
 
     int updateByExampleSelective(@Param("record") PoetryBase record, @Param("example") PoetryBaseExample example);
 

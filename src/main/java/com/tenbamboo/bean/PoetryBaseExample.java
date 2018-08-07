@@ -134,62 +134,52 @@ public class PoetryBaseExample {
             return (Criteria) this;
         }
 
-        public Criteria andBaseIdEqualTo(String value) {
+        public Criteria andBaseIdEqualTo(Integer value) {
             addCriterion("base_id =", value, "baseId");
             return (Criteria) this;
         }
 
-        public Criteria andBaseIdNotEqualTo(String value) {
+        public Criteria andBaseIdNotEqualTo(Integer value) {
             addCriterion("base_id <>", value, "baseId");
             return (Criteria) this;
         }
 
-        public Criteria andBaseIdGreaterThan(String value) {
+        public Criteria andBaseIdGreaterThan(Integer value) {
             addCriterion("base_id >", value, "baseId");
             return (Criteria) this;
         }
 
-        public Criteria andBaseIdGreaterThanOrEqualTo(String value) {
+        public Criteria andBaseIdGreaterThanOrEqualTo(Integer value) {
             addCriterion("base_id >=", value, "baseId");
             return (Criteria) this;
         }
 
-        public Criteria andBaseIdLessThan(String value) {
+        public Criteria andBaseIdLessThan(Integer value) {
             addCriterion("base_id <", value, "baseId");
             return (Criteria) this;
         }
 
-        public Criteria andBaseIdLessThanOrEqualTo(String value) {
+        public Criteria andBaseIdLessThanOrEqualTo(Integer value) {
             addCriterion("base_id <=", value, "baseId");
             return (Criteria) this;
         }
 
-        public Criteria andBaseIdLike(String value) {
-            addCriterion("base_id like", value, "baseId");
-            return (Criteria) this;
-        }
-
-        public Criteria andBaseIdNotLike(String value) {
-            addCriterion("base_id not like", value, "baseId");
-            return (Criteria) this;
-        }
-
-        public Criteria andBaseIdIn(List<String> values) {
+        public Criteria andBaseIdIn(List<Integer> values) {
             addCriterion("base_id in", values, "baseId");
             return (Criteria) this;
         }
 
-        public Criteria andBaseIdNotIn(List<String> values) {
+        public Criteria andBaseIdNotIn(List<Integer> values) {
             addCriterion("base_id not in", values, "baseId");
             return (Criteria) this;
         }
 
-        public Criteria andBaseIdBetween(String value1, String value2) {
+        public Criteria andBaseIdBetween(Integer value1, Integer value2) {
             addCriterion("base_id between", value1, value2, "baseId");
             return (Criteria) this;
         }
 
-        public Criteria andBaseIdNotBetween(String value1, String value2) {
+        public Criteria andBaseIdNotBetween(Integer value1, Integer value2) {
             addCriterion("base_id not between", value1, value2, "baseId");
             return (Criteria) this;
         }

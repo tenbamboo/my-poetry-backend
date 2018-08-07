@@ -1,7 +1,7 @@
 package com.tenbamboo.bean;
 
 public class PoetryBase {
-    private String baseId;
+    private Integer baseId;
 
     private String title;
 
@@ -17,12 +17,12 @@ public class PoetryBase {
 
     private String source;
 
-    public String getBaseId() {
+    public Integer getBaseId() {
         return baseId;
     }
 
-    public void setBaseId(String baseId) {
-        this.baseId = baseId == null ? null : baseId.trim();
+    public void setBaseId(Integer baseId) {
+        this.baseId = baseId;
     }
 
     public String getTitle() {
