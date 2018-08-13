@@ -37,7 +37,7 @@ public class Test {
 		PoetryBase base = new PoetryBase();	
 		base.setAuthor(String.valueOf(item.get("author")));
 		base.setTitle(String.valueOf(item.get("title")));
-		base.setBaseId(baseId);
+//		base.setBaseId(baseId);
 		base.setCreateDate(date);
 		base.setBaseType("1");
 		

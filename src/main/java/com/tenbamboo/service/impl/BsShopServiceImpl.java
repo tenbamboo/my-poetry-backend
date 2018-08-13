@@ -27,9 +27,9 @@ public class BsShopServiceImpl implements BsShopService {
 
 	public List<BsShop> getShopListByPage(BsShop param, Pager pager) {
 
-		BsShopExample e = new BsShopExample();
-		e.setLimit(pager.getPageSize());
-		e.setOffset(pager.getPageNo());
+//		BsShopExample e = new BsShopExample();
+//		e.setLimit(pager.getPageSize());
+//		e.setOffset(pager.getPageNo());
 //		e.setOrderByClause("cash_time desc");
 //
 //		if ("all".equals(type)) { // 所有
@@ -45,8 +45,15 @@ public class BsShopServiceImpl implements BsShopService {
 //			e.or().andCashReceiveIdEqualTo(userId).andCashTypeEqualTo("3");
 //
 //		}
+		return null;
 
-		return bsShopMapper.selectByExample(e);
+//		return bsShopMapper.selectByExample(e);
+	}
+
+	@Override
+	public String helloWould() {
+		// TODO Auto-generated method stub
+		return "metoo";
 	}
 
 }

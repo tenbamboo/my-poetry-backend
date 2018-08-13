@@ -168,6 +168,29 @@
 		</dependency>
 
 
+		<!-- Junit4 -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.9</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<version>${spring.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		
+<!-- 		<dependency> -->
+<!-- 		    <groupId>org.hibernate</groupId> -->
+<!-- 		    <artifactId>hibernate-validator</artifactId> -->
+<!-- 		    <version>4.2.0.Final</version> -->
+<!-- 		</dependency> -->
+
+
+
+
 		<!-- poi office start -->
 		<!-- <dependency> -->
 		<!-- <groupId>org.apache.poi</groupId> -->

@@ -117,7 +117,7 @@ public class PoetryGeneratorController {
 			for (int i = 0; i < size; i++) {
 				paragraphsList.get(i);
 				content = new PoetryContent();
-				content.setBaseId(base.getBaseId());
+//				content.setBaseId(base.getBaseId());
 				content.setContentId(Uid.getUUID());
 				content.setCreateDate(DateUtil.formatDate5());
 //				content.setStrains(strainsList.get((i)));
@@ -172,7 +172,7 @@ public class PoetryGeneratorController {
 			for (int i = 0; i < size; i++) {
 				paragraphsList.get(i);
 				content = new PoetryContent();
-				content.setBaseId(base.getBaseId());
+//				content.setBaseId(base.getBaseId());
 				content.setContentId(Uid.getUUID());
 				content.setCreateDate(DateUtil.formatDate5());
 				content.setStrains(strainsList.get((i)));

@@ -10,5 +10,7 @@ public interface BsShopService {
 	List<BsShop> getShopList();
 	
 	public List<BsShop> getShopListByPage(BsShop param, Pager pager);
+	
+	public String helloWould();
 
 }
